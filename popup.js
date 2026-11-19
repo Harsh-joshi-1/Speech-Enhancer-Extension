@@ -8,6 +8,7 @@ const subTitle = document.getElementById("subTitle");
 const slider = document.getElementById("gainFloorSlider");
 const gainVal = document.getElementById("gainVal");
 const recalibBtn = document.getElementById("recalibBtn");
+const recalibText = document.getElementById("recalibText");
 
 let isEnabled = true;
 
@@ -68,9 +69,10 @@ slider.addEventListener("input", () => {
 
 recalibBtn.addEventListener("click", () => {
   broadcastConfig({ recalibrate: true });
-  const originalHTML = recalibBtn.innerHTML;
-  recalibBtn.textContent = "Recalibrated";
-  setTimeout(() => {
-    recalibBtn.innerHTML = originalHTML;
-  }, 1200);
+  if (recalibText) {
+    recalibText.textContent = "Recalibrated";
+    setTimeout(() => {
+      recalibText.textContent = "Recalibrate room noise";
+    }, 1200);
+  }
 });
