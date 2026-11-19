@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Enhancer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Brand Nav / Header -->
+  <header class="app-header">
+    <div class="brand">
+      <img src="assets/logo/icon32.png" alt="Logo" class="brand-logo">
+      <span class="brand-title">Speech</span>
+      <span class="badge" id="badge"></span>
+    </div>
+    <div class="header-action">
+      <span class="tag-status" id="statusLabel">Active</span>
+    </div>
+  </header>
+
+  <main class="content-container">
+    <!-- Hero / State Card (Polarity Flipped or Soft) -->
+    <div class="state-card" id="stateCard">
+      <div class="state-info">
+        <h1 class="display-headline" id="mainTitle">Noise filter is active</h1>
+        <p class="body-caption" id="subTitle">Continuous ambient noise suppression in Google Meet and Zoom.</p>
+      </div>
+
+      <div class="action-row">
+        <button id="enhancerToggleBtn" class="btn-primary">Turn off</button>
+      </div>
+    </div>
+
+    <!-- Controls Section: Card Content (16px rounded, canvas-soft) -->
+    <div class="settings-card">
+      <div class="control-header">
+        <label class="control-label">Suppression intensity</label>
+        <span class="value-chip" id="gainVal">0.08</span>
+      </div>
+
+      <div class="slider-wrapper">
+        <input type="range" id="gainFloorSlider" min="0.02" max="0.20" step="0.01" value="0.08">
+      </div>
+
+      <div class="slider-legend">
+        <span>Aggressive</span>
+        <span>Mild</span>
+      </div>
+    </div>
+
+    <!-- Secondary Action Pill (button-subtle) -->
+    <div class="footer-actions">
+      <button id="recalibBtn" class="btn-subtle">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+        </svg>
+        Recalibrate room noise
+      </button>
+    </div>
+
+    <!-- Editorial Note / Info Banner -->
+    <footer class="app-footer">
+      <p class="footer-note">Running 100% client-side via Web Audio Worklet. No audio ever leaves your browser.</p>
+    </footer>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

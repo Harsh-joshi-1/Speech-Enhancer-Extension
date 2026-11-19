@@ -1,0 +1,297 @@
+/* 
+  Uber-inspired Design Language Implementation
+  Tokens extracted from DESIGN.md:
+  - Colors: primary #000000, canvas #ffffff, canvas-soft #efefef, ink #000000, body #5e5e5e, hairline-mid #4b4b4b
+  - Typography: UberMove / Inter geometric display 700 (sentence case), UberMoveText 400/500
+  - Shapes: rounded.xl (16px) for cards, rounded.pill (999px) for all buttons and interactive controls
+  - Polarity duet: Black primary CTA pills, white canvas, flat subtle elevation
+*/
+
+:root {
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-ink: #000000;
+  --color-body: #5e5e5e;
+  --color-mute: #afafaf;
+  --color-hairline: #e2e2e2;
+  --color-canvas: #ffffff;
+  --color-canvas-soft: #efefef;
+  --color-canvas-softer: #f3f3f3;
+  --color-surface-pressed: #e2e2e2;
+  
+  --font-family: -apple-system, BlinkMacSystemFont, "UberMoveText", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "UberMove", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --rounded-md: 8px;
+  --rounded-xl: 16px;
+  --rounded-pill: 999px;
+  
+  --shadow-level-1: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-level-2: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 320px;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  padding: 16px;
+  user-select: none;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-canvas-soft);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--rounded-md);
+  object-fit: contain;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--color-ink);
+}
+
+.badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #000000;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.badge.off {
+  background-color: var(--color-mute);
+}
+
+.tag-status {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-body);
+  background: var(--color-canvas-soft);
+  padding: 4px 10px;
+  border-radius: var(--rounded-pill);
+}
+
+/* Main Container */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* State / Hero Card (card-elevated / promo-card) */
+.state-card {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-xl);
+  padding: 16px;
+  box-shadow: var(--shadow-level-1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.2s ease;
+}
+
+.state-card.dark-theme {
+  background-color: var(--color-ink);
+  color: var(--color-on-primary);
+  border-color: var(--color-ink);
+}
+
+.state-card.dark-theme .display-headline {
+  color: #ffffff;
+}
+
+.state-card.dark-theme .body-caption {
+  color: var(--color-mute);
+}
+
+.display-headline {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -0.3px;
+  color: var(--color-ink);
+}
+
+.body-caption {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-body);
+  margin-top: 4px;
+}
+
+/* Button Primary (canonical 999px black pill) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--rounded-pill);
+  padding: 12px 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #282828;
+}
+
+.btn-primary:active {
+  background-color: #000000;
+  transform: scale(0.99);
+}
+
+/* When state card is dark, primary button inverts to white pill */
+.state-card.dark-theme .btn-primary {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.state-card.dark-theme .btn-primary:hover {
+  background-color: var(--color-canvas-soft);
+}
+
+/* Settings / Content Card */
+.settings-card {
+  background-color: var(--color-canvas-soft);
+  border-radius: var(--rounded-xl);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.control-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-body);
+  text-transform: none;
+}
+
+.value-chip {
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  padding: 2px 8px;
+  border-radius: var(--rounded-pill);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Range Slider */
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  background: var(--color-surface-pressed);
+  border-radius: var(--rounded-pill);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.slider-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-body);
+  font-weight: 400;
+}
+
+/* Subtle Action Button (button-subtle) */
+.btn-subtle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  background-color: var(--color-canvas-soft);
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--rounded-pill);
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-subtle:hover {
+  background-color: var(--color-surface-pressed);
+}
+
+.btn-subtle:active {
+  background-color: #d8d8d8;
+}
+
+/* App Footer / Legal note */
+.app-footer {
+  padding-top: 4px;
+  text-align: center;
+}
+
+.footer-note {
+  font-size: 11px;
+  color: var(--color-mute);
+  line-height: 15px;
+}
+
